@@ -83,7 +83,7 @@ public abstract class Code {
         }
         System.out.println(") {");
         for (int i = 0; i < attributes.size(); i++) {
-            System.out.println("        set"+Util.uppercaseFirst(attributes.get(i))+"("+attributes.get(i)+");");
+            System.out.println("        set"+ Misc.uppercaseFirst(attributes.get(i))+"("+attributes.get(i)+");");
         }
         System.out.println("    }");
         System.out.println();
@@ -91,7 +91,7 @@ public abstract class Code {
         System.out.println("    //Copia");
         System.out.println("    public "+className+"("+className+" original) {");
         for (int i = 0; i < attributes.size(); i++) {
-            System.out.println("        set"+Util.uppercaseFirst(attributes.get(i))+"(original.get"+Util.uppercaseFirst(attributes.get(i))+"());");
+            System.out.println("        set"+ Misc.uppercaseFirst(attributes.get(i))+"(original.get"+ Misc.uppercaseFirst(attributes.get(i))+"());");
         }
         System.out.println("    }");
 
@@ -103,12 +103,12 @@ public abstract class Code {
 
         for (int i = 0; i < attributes.size(); i++) {
             //getter
-            System.out.println("    public "+dataTypes.get(i)+" get"+Util.uppercaseFirst(attributes.get(i))+"() {");
+            System.out.println("    public "+dataTypes.get(i)+" get"+ Misc.uppercaseFirst(attributes.get(i))+"() {");
             System.out.println("        return "+attributes.get(i)+";");
             System.out.println("    }");
             //setter
             System.out.println();
-            System.out.println("    public void set"+Util.uppercaseFirst(attributes.get(i))+"("+dataTypes.get(i)+" "+attributes.get(i)+") {");
+            System.out.println("    public void set"+ Misc.uppercaseFirst(attributes.get(i))+"("+dataTypes.get(i)+" "+attributes.get(i)+") {");
             System.out.println("        this."+attributes.get(i)+" = "+attributes.get(i)+";");
             System.out.println("    }");
         }
