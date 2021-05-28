@@ -12,15 +12,13 @@ public class Menu {
     private String exit;                    /**The text that will be shown as the "[0] - Exit" option*/
     private int size;                       /**The width of the menu; will be calculated automatically in the setter*/
 
+    private static String optionSelector = "Write the number: ";
+    public static String optionDoNotExist = "There is no option with that number.\n" +
+                                            "Write the number of an existing option: ";
+
 
     //Constructors
 
-
-    //Empty
-    public Menu() {
-    }
-
-    //Basic
 
     /**
      * Creates a menu with a predefined question and exit.
@@ -29,6 +27,7 @@ public class Menu {
      * @param name
      * @param optionList
      */
+    //Basic
     public Menu(String name, ArrayList<String> optionList) {
         setName(name);
         setOptionList(optionList);
@@ -38,6 +37,14 @@ public class Menu {
     }
 
 
+    /**
+     * Creates a menu with a name, a list of option, a question and a name for the exit option
+     *
+     * @param name
+     * @param optionList
+     * @param question
+     * @param exit
+     */
     //With all parameters
     public Menu(String name, ArrayList<String> optionList, String question, String exit) {
         setName(name);
@@ -47,6 +54,11 @@ public class Menu {
         setSize();
     }
 
+    /**
+     * Creates a menu copying another menu
+     *
+     * @param original
+     */
     //Copy
     public Menu(Menu original) {
         setName(original.getName());
@@ -60,10 +72,16 @@ public class Menu {
     //Getters and Setters
 
 
+    /**Retruns the name uppercased
+     * @return
+     */
     public String getName() {
         return name.toUpperCase();
     }
 
+    /**Sets the name uppercased
+     * @param name
+     */
     public void setName(String name) {
         this.name = name.toUpperCase();
     }
@@ -92,6 +110,9 @@ public class Menu {
         return size;
     }
 
+    /**This setter has no params.
+     * Calculates and sets the size of the menu depending on the longest field of the menu
+     * */
     public void setSize() {
 
         int[] lengthsList = new int[optionList.size() + 3];
@@ -110,6 +131,10 @@ public class Menu {
     //ToString
 
 
+    /**The method returns the a String that is the menu box with everything in it
+     *
+     * @return
+     */
     @Override
     public String toString() {
 
@@ -126,26 +151,27 @@ public class Menu {
         string = string.concat("│ " + relativeSpace("") +                 "       │\n");
         string = string.concat("│   [0] - " + exit + relativeSpace(exit,1)  +  "│\n");
         string = string.concat("│ " + relativeSpace("") +                 "       │\n");
-        string = string.concat("└" + horitzonalLine() +                              "┘");
+        string = string.concat("└" + horitzonalLine() +                              "┘\n");
+        string = string.concat(optionSelector);
         return string;
     }
 
 
     //Methods
 
-
+    /**Prints the menu and returns the number of the option the user selected
+     *
+     * @return
+     */
     public int execute() {
 
-        System.out.println(this);
+        System.out.print(this);
 
-        int nOpciones = optionList.size();
-
-        System.out.print("Escribe el numero: ");
+        int optionAmount = optionList.size();
 
         int option = Input.getInt();
-        while (option > nOpciones || option < 0) {
-            System.out.println("\nEsa opcion no existe");
-            System.out.print("Escribe una opcion que exista: ");
+        while (option > optionAmount || option < 0) {
+            System.out.print(optionDoNotExist);
             option = Input.getInt();
         }
         return option;
@@ -171,6 +197,11 @@ public class Menu {
         return ("│   [" + (index + 1) + "] - " + option + relativeSpace(option, index) + "│\n");
     }
 
+    /** Returns a String param into a box to print it as a header
+     *
+     * @param name
+     * @return
+     */
     public static String header(String name) {
 
         name = name.toUpperCase();
@@ -185,6 +216,10 @@ public class Menu {
         return string;
     }
 
+    /**Return a String whith the name of the menu to print it as a header
+     *
+     * @return
+     */
     public String header() {
 
         String string = "";

@@ -5,7 +5,7 @@ public abstract class Input {
 
     public static Scanner input = new Scanner(System.in);
 
-    public static String incorrectValueMessage = "Valor introducido incorrecto.\nEscribe un valor valido: ";
+    public static String incorrectValueMessage = "Given value type is incorrect.\nWrite another value: ";
 
     public static byte getByte() {
         try {
