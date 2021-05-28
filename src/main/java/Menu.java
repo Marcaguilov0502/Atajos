@@ -6,11 +6,11 @@ public class Menu {
     //Attributes
 
 
-    private String name;
-    private ArrayList<String> optionList;
-    private String question;
-    private String exit;
-    private int size;
+    private String name;                    /**Name of the menu*/
+    private ArrayList<String> optionList;   /**List of the options that the menu has*/
+    private String question;                /**The question that the menu will ask*/
+    private String exit;                    /**The text that will be shown as the "[0] - Exit" option*/
+    private int size;                       /**The width of the menu; will be calculated automatically in the setter*/
 
 
     //Constructors
@@ -21,6 +21,14 @@ public class Menu {
     }
 
     //Basic
+
+    /**
+     * Creates a menu with a predefined question and exit.
+     * Only need a name an a list of options.
+     *
+     * @param name
+     * @param optionList
+     */
     public Menu(String name, ArrayList<String> optionList) {
         setName(name);
         setOptionList(optionList);
@@ -29,7 +37,8 @@ public class Menu {
         setSize();
     }
 
-    //With parameters
+
+    //With all parameters
     public Menu(String name, ArrayList<String> optionList, String question, String exit) {
         setName(name);
         setOptionList(optionList);
@@ -161,77 +170,37 @@ public class Menu {
     public String printOption(String option, int index) {
         return ("│   [" + (index + 1) + "] - " + option + relativeSpace(option, index) + "│\n");
     }
+
+    public static String header(String name) {
+
+        name = name.toUpperCase();
+        String string = "";
+        int width = name.length() + 4;
+        String s = " ".repeat(2);
+
+        string = string.concat("┌" + "─".repeat(width) + "┐\n");
+        string = string.concat("│" + s + name + s +  "│\n");
+        string = string.concat("└" + "─".repeat(width) + "┘");
+
+        return string;
+    }
+
+    public String header() {
+
+        String string = "";
+
+        int width = size;
+
+        if (Misc.isOdd(size) != Misc.isOdd(name.length())) {
+            width = size - 1;
+        }
+
+        String s = " ".repeat((width - name.length())/2);
+
+        string = string.concat("┌" + "─".repeat(width) + "┐\n");
+        string = string.concat("│" + s + name + s +  "│\n");
+        string = string.concat("└" + "─".repeat(width) + "┘");
+
+        return string;
+    }
 }
-/*
-public abstract class Menu {
-
-
-    //Attributes (options of each menu)
-
-
-    public static ArrayList<String> mainMenu = new ArrayList<>(Arrays.asList(
-            "Insertar jugador",
-            "Crear alineacion",
-            "Consultar alineacion"
-    ));
-    public static ArrayList<String> testMenu = new ArrayList<>(Arrays.asList("Hello", "Bye"));
-
-
-    //Methods
-
-
-    //Menu printer
-    @Deprecated
-    public static void print(ArrayList<String> opciones) {
-
-        System.out.println("\n".repeat(10));
-
-        String m = "\uD835\uDDE0\uD835\uDDD8\uD835\uDDE1\uD835\uDDE8 ";
-
-        System.out.println("┌─────────────────────────────────────────────────┐");
-        System.out.println("│ " + m + "                                           │");
-        System.out.println("├─────────────────────────────────────────────────┤");
-        System.out.println("│ Que accion desea realizar?                      │");
-        System.out.println("│                                                 │");
-        for (int i = 0; i < opciones.size(); i++) {
-            System.out.println("│   [" + (i + 1) + "] - " + opciones.get(i) + " ".repeat(41 - (opciones.get(i).length() + String.valueOf(i).length())) + "│");
-        }
-        System.out.println("│                                                 │");
-        System.out.println("│   [0] - Salir                                   │");
-        System.out.println("│                                                 │");
-        System.out.println("└─────────────────────────────────────────────────┘");
-
-    }
-
-    //Asks for a int between 0 and Array.length
-    public static int chooseOption(ArrayList<String> opciones) {
-
-        int nOpciones = opciones.size();
-
-        System.out.print("Escribe el numero: ");
-
-        int opcion = Input.getInt();
-        while (opcion > nOpciones || opcion < 0) {
-            System.out.println("\nEsa opcion no existe");
-            System.out.print("Escribe una opcion que exista: ");
-            opcion = Input.getInt();
-        }
-        return opcion;
-    }
-
-    public static void ejecutarMenu(ArrayList<String> menu) throws SQLException {
-
-        if (menu == mainMenu) {
-            mainMenu();
-        } else if (menu == testMenu) {
-            testMenu();
-        }
-    }
-
-
-    //Specific menu methods
-
-    public static void mainMenu() {
-        print(mainMenu);
-    }
-}*/

@@ -6,9 +6,15 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<String> testMenu = new ArrayList<>(Arrays.asList("1234567891", "Comer", "Dormir", "Correr", "Saltar", "Crear", "Borrar", "Pelear", "Gritar", "Bailar", "Estornuda"));
-        Menu test = new Menu("main menu", testMenu, "12345678910", "Exit");
-        test.execute();
+        ArrayList<String> testMenu = new ArrayList<>(Arrays.asList(""));
+        Menu test1 = new Menu("0", testMenu, "".repeat(50), "");
+        Menu test2 = new Menu("1", testMenu, "x".repeat(50), "");
+        Menu test3 = new Menu("00", testMenu, "".repeat(50), "");
+        Menu test4 = new Menu("11", testMenu, "x".repeat(50), "");
+        System.out.println(test1.header());
+        System.out.println(test2.header());
+        System.out.println(test3.header());
+        System.out.println(test4.header());
 
     }
 

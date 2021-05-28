@@ -5,6 +5,8 @@ public abstract class Input {
 
     public static Scanner input = new Scanner(System.in);
 
+    public static String incorrectValueMessage = "Valor introducido incorrecto.\nEscribe un valor valido: ";
+
     public static byte getByte() {
         try {
             byte sysIn = input.nextByte();
@@ -12,8 +14,7 @@ public abstract class Input {
             return sysIn;
         } catch (InputMismatchException ime) {
             String aux = input.nextLine();
-            System.out.println("Valor introducido incorrecto");
-            System.out.println("Escribe un numero valido: ");
+            System.out.print(incorrectValueMessage);
             return getByte();
         }
     }
@@ -25,8 +26,7 @@ public abstract class Input {
             return sysIn;
         } catch (InputMismatchException ime) {
             String aux = input.nextLine();
-            System.out.println("Valor introducido incorrecto");
-            System.out.println("Escribe un numero valido: ");
+            System.out.print(incorrectValueMessage);
             return getShort();
         }
     }
@@ -38,8 +38,7 @@ public abstract class Input {
             return sysIn;
         } catch (InputMismatchException ime) {
             String aux = input.nextLine();
-            System.out.println("Valor introducido incorrecto");
-            System.out.println("Escribe un numero valido: ");
+            System.out.print(incorrectValueMessage);
             return getInt();
         }
     }
@@ -51,8 +50,7 @@ public abstract class Input {
             return sysIn;
         } catch (InputMismatchException ime) {
             String aux = input.nextLine();
-            System.out.println("Valor introducido incorrecto");
-            System.out.println("Escribe un numero valido: ");
+            System.out.print(incorrectValueMessage);
             return getLong();
         }
     }
@@ -65,8 +63,7 @@ public abstract class Input {
             if (f > Float.MAX_VALUE) {throw new NumberFormatException();}
             return f;
         } catch (NumberFormatException ime) {
-            System.out.println("Valor introducido incorrecto");
-            System.out.println("Escribe un numero valido: ");
+            System.out.print(incorrectValueMessage);
             return getFloat();
         }
     }
@@ -79,8 +76,7 @@ public abstract class Input {
             if (d > Double.MAX_VALUE) {throw new NumberFormatException();}
             return d;
         } catch (NumberFormatException ime) {
-            System.out.println("Valor introducido incorrecto");
-            System.out.println("Escribe un numero valido: ");
+            System.out.print(incorrectValueMessage);
             return getDouble();
         }
     }
@@ -90,8 +86,7 @@ public abstract class Input {
             String sysIn = input.nextLine();
             return sysIn;
         } catch (InputMismatchException ime) {
-            System.out.println("Valor introducido incorrecto");
-            System.out.println("Escribe un texto valido: ");
+            System.out.print(incorrectValueMessage);
             return getString();
         }
     }
@@ -106,8 +101,7 @@ public abstract class Input {
                 return sysIn.charAt(0);
             }
         } catch (InputMismatchException ime) {
-            System.out.println("Valor introducido incorrecto");
-            System.out.println("Escribe un caracter valido: ");
+            System.out.print(incorrectValueMessage);
             return getChar();
         }
     }

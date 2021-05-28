@@ -10,8 +10,7 @@ public abstract class Misc {
     }
 
     public static int numberOfDigits(long number) {
-        int digits = Long.toString(Math.abs(number)).length();
-        return digits;
+        return Long.toString(Math.abs(number)).length();
     }
 
     public static int max(int[] numbers) {
@@ -20,5 +19,13 @@ public abstract class Misc {
             max = Integer.max(max, n);
         }
         return max;
+    }
+
+    public static boolean isOdd(int n) {
+        return (n%2 == 1);
+    }
+
+    public static boolean isEven(int n) {
+        return (n%2 == 0);
     }
 }
